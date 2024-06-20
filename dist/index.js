@@ -3,9 +3,9 @@ var Environment = class {
   // -- 版本数据 --
   //
   // 当前版本
-  BUILD_TIMESTAMP = 1715327121;
+  BUILD_TIMESTAMP = 1718863608;
   // 当前版本 commit id
-  BUILD_VERSION = "8d6f441";
+  BUILD_VERSION = "17ebf29";
   // -- 基础配置 --
   /**
    * @type {I18n | null}
@@ -1090,7 +1090,7 @@ var LineDecoder = class {
     if (typeof TextDecoder !== "undefined") {
       if (bytes instanceof Uint8Array || bytes instanceof ArrayBuffer) {
         (_a = this.textDecoder) !== null && _a !== void 0 ? _a : this.textDecoder = new TextDecoder("utf8");
-        return this.textDecoder.decode(bytes);
+        return this.textDecoder.decode(bytes, { stream: true });
       }
       throw new Error(`Unexpected: received non-Uint8Array/ArrayBuffer (${bytes.constructor.name}) in a web platform. Please report this error.`);
     }
@@ -1233,11 +1233,14 @@ async function requestImageFromOpenAI(prompt, context) {
     body.style = context.USER_CONFIG.DALL_E_IMAGE_STYLE;
   }
   {
-    const provider = context.USER_CONFIG.AI_PROVIDER;
+    const provider = context.USER_CONFIG.AI_IMAGE_PROVIDER;
     let isAzureModel = false;
     switch (provider) {
       case "azure":
         isAzureModel = true;
+        break;
+      case "openai":
+        isAzureModel = false;
         break;
       case "auto":
         isAzureModel = isAzureEnable(context) && context.USER_CONFIG.AZURE_DALLE_API !== null;
