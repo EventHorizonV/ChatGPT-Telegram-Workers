@@ -1,5 +1,5 @@
 # 这里的 name 改成你自己的workers 的名字
-name = "chatgpt-telegram-workers"
+name = "telegram-gptbot"
 compatibility_date = "2023-10-07"
 main = "./dist/index.js"
 workers_dev = true
@@ -21,25 +21,28 @@ kv_namespaces = [
 # 所有变量必须为字符串，多个参数的值之间用逗号隔开
 
 # 基本配置
-API_KEY = "sk-"
+API_KEY = ""
 TELEGRAM_AVAILABLE_TOKENS = ""
 CHAT_WHITE_LIST = ""
+OPENAI_API_BASE = "https://api.chatanywhere.cn/v1"
 # I_AM_A_GENEROUS_PERSON = "false"
 # AUTO_TRIM_HISTORY = "false"
 # MAX_HISTORY_LENGTH = "20"
 # DEBUG_MODE = "false"
-# CHAT_MODEL = "gpt-3.5-turbo"
-
+CHAT_MODEL = "gpt-3.5-turbo-0125"
+LANGUAGE = "zh-CN"
+AI_PROVIDER = "auto"
 # 群组相关配置
 # GROUP_CHAT_BOT_ENABLE = "true"
 # TELEGRAM_BOT_NAME = ":bot_name"
-# CHAT_GROUP_WHITE_LIST = ":group_id"
+CHAT_GROUP_WHITE_LIST = ""
 # GROUP_CHAT_BOT_SHARE_MODE = "false"
 
 
-# CLOUDFLARE_ACCOUNT_ID = ""
-# CLOUDFLARE_TOKEN = ""
-# WORKERS_AI_MODEL = "@cf/meta/llama-2-7b-chat-int8"
+CLOUDFLARE_ACCOUNT_ID = ""
+CLOUDFLARE_TOKEN = ""
+WORKERS_AI_MODEL = "@cf/meta/llama-3-8b-instruct"
+WORKERS_IMAGE_MODEL = "@cf/stabilityai/stable-diffusion-xl-base-1.0"
 
 CUSTOM_COMMAND_azure= '/setenvs {"AI_PROVIDER": "azure"}'
 CUSTOM_COMMAND_workers = '/setenvs {"AI_PROVIDER": "workers"}'
